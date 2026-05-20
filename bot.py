@@ -16,13 +16,20 @@ bot = telebot.TeleBot(TOKEN)
 # ========================
 # GOOGLE SHEETS CONNECT
 # ========================
+
+import os
+import json
+
 scope = [
     'https://spreadsheets.google.com/feeds',
     'https://www.googleapis.com/auth/drive'
 ]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name('creds.json', scope)
+creds_dict = json.loads(os.getenv('CREDS_JSON'))
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
 client = gspread.authorize(creds)
+
 
 data_sheet = client.open(SHEET_NAME).worksheet('Data')
 teknisi_sheet = client.open(SHEET_NAME).worksheet('Teknisi')
