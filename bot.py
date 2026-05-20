@@ -29,7 +29,7 @@ scope = [
 
 creds = ServiceAccountCredentials.from_json_keyfile_dict(
     json.loads(os.environ['CREDS_JSON']), scope
-
+)
 client = gspread.authorize(creds)
 
 
