@@ -20,13 +20,15 @@ bot = telebot.TeleBot(TOKEN)
 import os
 import json
 
+print("CREDS:", os.getenv("CREDS_JSON")[:50]) # debug (boleh sementara)
+
 scope = [
     'https://spreadsheets.google.com/feeds',
     'https://www.googleapis.com/auth/drive'
 ]
 
-creds_dict = json.loads(os.getenv('CREDS_JSON'))
-creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+creds = ServiceAccountCredentials.from_json_keyfile_dict(
+    json.loads(os.environ['CREDS_JSON']), scope
 
 client = gspread.authorize(creds)
 
