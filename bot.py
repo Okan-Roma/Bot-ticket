@@ -20,8 +20,6 @@ bot = telebot.TeleBot(TOKEN)
 import os
 import json
 
-print("CREDS:", os.getenv("CREDS_JSON")[:50])
-
 scope = [
     'https://spreadsheets.google.com/feeds',
     'https://www.googleapis.com/auth/drive'
